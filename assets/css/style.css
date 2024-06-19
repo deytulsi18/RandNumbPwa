@@ -43,6 +43,13 @@
     U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191,
     U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
+@font-face {
+  font-family: 'Poppins';
+  font-style: italic;
+  font-weight: 200;
+  src: url(https://fonts.gstatic.com/s/poppins/v21/pxiDyp8kv8JHgFVrJJLmv1pVF9eO.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
 
 * {
   -webkit-tap-highlight-color: transparent;
@@ -336,29 +343,28 @@ button {
 }
 
 #install {
-  border: 0.25em solid white;
   font-size: 1.5rem;
-  border: 0.25rem solid white;
-  box-shadow: 1px 1px 10px 5px hsla(0, 0%, 0%, 0.125);
-  border-radius: 1.5rem;
-  padding: 1.125rem;
+  border: 2px solid hsl(60, 100%, 75%);
+  box-shadow: 1px 1px 10px 5px hsla(0, 0%, 0%, 0.15);
+  border-radius: 0 10px 0 10px;
+  border-top: none;
+  border-right: none;
+  padding: 0.75rem;
   transition: 0.3s;
-  background-color: hsl(100, 77%, 24%);
-  color: white;
+  background-color: hsl(100, 77%, 23%);
+  color: #eee;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
-  max-width: fit-content;
   text-decoration: none;
-  font-family: Calibri, sans-serif;
+  font-family: "Poppins", sans-serif;
   transition: 0.3s ease-in;
   cursor: pointer;
-  max-width: 3rem;
-  max-height: 3rem;
-  position: absolute;
-  margin-left: 550px;
-  margin-top: 470px;
+  width: 10rem;
+  height: 3rem;
+  margin-top: -1.06rem;
+  margin-right: -1.06rem;
 }
 
 #install:active {
@@ -371,14 +377,15 @@ button {
 }
 
 #install span {
-  font-size: 1rem;
+  font-size: 1.75rem;
+  font-style: italic;
+  font-weight: 200;
   padding-top: 0.125rem;
+  padding-left: 1rem;
 }
 
 .btn-div {
   display: flex;
-  justify-content: flex-start;
+  justify-content: flex-end;
   align-items: center;
-  /* background-color: burlywood;
-  padding: 1rem; */
 }

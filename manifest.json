@@ -3,7 +3,7 @@
     "name": "RandNumb",
     "icons": [
         {
-            "src": "/assets/img/favicon.png",
+            "src": "/assets/img/logo.png",
             "type": "image/png",
             "sizes": "512x512",
             "purpose": "any maskable"
