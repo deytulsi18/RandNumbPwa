@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Random Number Generator" />
+
+    <link rel="manifest" href="/manifest.json" />
+
+    <!-- ios support -->
+    <link rel="apple-touch-icon" href="/assets/img/favicon.png" />
+    <meta name="apple-mobile-web-app-status-bar" content="#000000" />
+    <meta name="theme-color" content="#000000" />
+
+    <title>RandNumb</title>
+
+    <link rel="icon" type="image/x-icon" href="/assets/img/favicon.png" />
+
+    <!-- <link rel="stylesheet" href="./assets/css/style.css" /> -->
+    <style>
+      /* Fonts */
+      @font-face {
+        font-family: "Montserrat";
+        font-style: normal;
+        font-weight: 400; /*100 - 900 */
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/montserrat/v26/JTUSjIg1_i6t8kCHKm459Wlhyw.woff2)
+          format("woff2");
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
+          U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC,
+          U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+      }
+      @font-face {
+        font-family: "Montserrat";
+        font-style: italic;
+        font-weight: 400; /*100 - 900 */
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/montserrat/v26/JTUQjIg1_i6t8kCHKm459WxRyS7m.woff2)
+          format("woff2");
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
+          U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC,
+          U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+      }
+      @font-face {
+        font-family: "Poppins";
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/poppins/v20/pxiEyp8kv8JHgFVrJJfecg.woff2)
+          format("woff2");
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
+          U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC,
+          U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+      }
+      @font-face {
+        font-family: "Poppins";
+        font-style: italic;
+        font-weight: 100;
+        font-display: swap;
+        src: url(https://fonts.gstatic.com/s/poppins/v20/pxiAyp8kv8JHgFVrJJLmE0tCMPI.woff2)
+          format("woff2");
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
+          U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC,
+          U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+      }
+
+      * {
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      h1 {
+        text-align: center;
+        color: hsl(60, 100%, 75%);
+        margin-bottom: 0.5rem;
+      }
+
+      html {
+        margin: 0.75rem;
+      }
+
+      body {
+        background-color: #222;
+        max-width: 700px;
+        margin: 0 auto;
+        font-family: "Montserrat", sans-serif;
+      }
+
+      .main {
+        color: #fff;
+        background-color: hsl(275, 66%, 30%);
+        background-image: linear-gradient(
+          to bottom right,
+          hsl(275, 66%, 30%),
+          hsl(250, 66%, 25%)
+        );
+        padding: 1rem;
+        border: 3px solid hsl(60, 100%, 75%);
+        border-radius: 10px;
+      }
+
+      p {
+        font-size: large;
+        margin: 5px 0;
+      }
+
+      .go-button {
+        font-size: x-large;
+        font-weight: 700;
+        color: #000;
+        background-color: hsl(118, 100%, 75%);
+        padding: 1rem 1.5rem;
+        border: 3px solid black;
+        border-radius: 20px;
+        border-radius: 10rem;
+        max-width: fit-content;
+        cursor: pointer;
+        box-shadow: 1px 1px 5px 3px rgba(0, 0, 0, 0.5);
+        user-select: none;
+        min-width: 285px;
+        transition: all 1s linear 1s;
+        margin: 1rem;
+      }
+
+      .go-button:active {
+        box-shadow: 1px 1px 5px 3px rgba(0, 0, 0, 0.5),
+          inset 1px 1px 3px 1px rgba(0, 0, 0, 0.5);
+      }
+
+      .disable-click {
+        pointer-events: none !important;
+        background-color: darkorange !important;
+      }
+
+      .ripple {
+        background-position: center;
+        transition: background 0.8s;
+        background: hsl(120, 90%, 65%)
+          radial-gradient(circle, transparent 1%, hsl(120, 90%, 65%) 1%)
+          center/15000%;
+      }
+
+      .ripple:active {
+        background-color: hsl(112, 90%, 75%);
+        background-size: 100%;
+        transition: background 0s;
+      }
+
+      .result-div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 2rem 0;
+      }
+
+      #result {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 5rem;
+        font-weight: bold;
+        border-radius: 20px;
+        width: 12rem;
+        height: 6rem;
+        background-color: hsl(84, 100%, 35%);
+        background-color: hsl(0, 0%, 35%);
+        color: white;
+        border: 0.45rem solid hsl(50, 100%, 65%);
+        margin: 2rem 1rem 2.5rem 1rem;
+        text-shadow: 1px 1.5px 5px black;
+        box-shadow: inset 1px 1px 3px 3px rgba(0, 0, 0, 0.5),
+          3px 3px 7px 7px rgba(0, 0, 0, 0.25);
+      }
+
+      .rotation {
+        animation: spin 1s linear;
+      }
+
+      .reverse-rotation {
+        animation: reverse-spin 1s linear;
+      }
+
+      @-webkit-keyframes spin {
+        from {
+          -webkit-transform: rotate(0deg);
+        }
+
+        to {
+          -webkit-transform: rotate(360deg);
+        }
+      }
+
+      @keyframes spin {
+        from {
+          transform: rotate(0deg);
+        }
+
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      @-webkit-keyframes reverse-spin {
+        from {
+          -webkit-transform: rotate(360deg);
+        }
+
+        to {
+          -webkit-transform: rotate(0deg);
+        }
+      }
+
+      @keyframes reverse-spin {
+        from {
+          transform: rotate(360deg);
+        }
+
+        to {
+          transform: rotate(0deg);
+        }
+      }
+
+      .number-input-container {
+        width: 280px;
+        display: grid;
+        grid-template-columns: 60px auto 60px;
+        margin: 1rem 0;
+        background-color: hsl(50, 100%, 65%);
+        padding: 0.25rem;
+        /* border: 3px solid black; */
+        box-shadow: 1px 1px 5px 3px rgba(0, 0, 0, 0.5);
+        border-radius: 25px;
+      }
+
+      .number-input {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        overflow: hidden;
+      }
+
+      input[type="number"] {
+        -webkit-appearance: none;
+        -webkit-border-radius: 0px;
+        -moz-appearance: none;
+        appearance: none;
+
+        width: 100%;
+        min-width: 100%;
+        /* height: 48px; */
+        border-radius: none;
+
+        font-size: 1.25rem;
+        line-height: 24px;
+        text-align: center;
+
+        font-family: sans-serif;
+      }
+
+      input[type="number"]::-webkit-inner-spin-button,
+      input[type="number"]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+
+      input[type="number"],
+      input[type="number"]:focus {
+        -moz-appearance: textfield;
+        border: 2px solid #000;
+        border-left: none;
+        border-right: none;
+      }
+
+      input[type="number"]:focus {
+        background-color: #eee;
+        -moz-appearance: textfield;
+        border: 2px solid #000;
+        border-left: none;
+        border-right: none;
+      }
+
+      button {
+        padding: 0.5rem;
+        background-color: #aaa;
+      }
+
+      button {
+        margin: 0;
+        color: #000;
+        border: 2px solid #000;
+        cursor: pointer;
+        font-size: 2.5rem;
+        user-select: none;
+      }
+
+      .button-decrement {
+        color: #000;
+        border-right: none;
+        border-radius: 20px 0 0 20px;
+        padding: 1rem;
+      }
+
+      .button-increment {
+        color: #000;
+        border-left: none;
+        border-radius: 0 20px 20px 0;
+      }
+
+      .some-info {
+        font-size: 0.95rem;
+        color: yellow;
+        background-color: hsl(0, 100%, 38%);
+        background-color: hsl(0, 0%, 23%);
+        padding: 0.5rem 1rem;
+        margin-bottom: -1rem;
+        border-radius: 10px 10px 0 0;
+        box-shadow: 1px 1px 5px 3px rgba(0, 0, 0, 0.75);
+        text-align: center;
+      }
+
+      .card {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+      }
+
+      .author-div {
+        font-family: "Poppins", sans-serif;
+        font-style: italic;
+        font-weight: 100;
+        padding-top: 1rem;
+        margin-bottom: -0.75rem;
+        color: yellow;
+        border-radius: 5px;
+        display: flex;
+        justify-content: right;
+        align-items: center;
+      }
+
+      .author-div p {
+        font-size: small;
+      }
+
+      @media (max-width: 350px) {
+        .number-input-container {
+          width: auto;
+        }
+        .some-info {
+          max-width: 120px;
+        }
+        .go-button {
+          min-width: 210px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="main">
+      <div class="card">
+        <h1>Random Number Generator</h1>
+
+        <div class="result-div">
+          <span id="result" class="result">?</span>
+        </div>
+
+        <label class="some-info" for="upper-limit">
+          Input the Upper Limit
+        </label>
+
+        <div class="number-input-container">
+          <button
+            type="button"
+            class="value-change-button button-decrement"
+            data-type="decrement"
+          >
+            -
+          </button>
+          <div class="number-input">
+            <input
+              type="number"
+              value="10"
+              min="1"
+              max="1000"
+              id="upper-limit"
+            />
+          </div>
+          <button
+            type="button"
+            class="value-change-button button-increment"
+            data-type="increment"
+          >
+            +
+          </button>
+        </div>
+
+        <div class="go-button-div">
+          <button class="go-button ripple">GO!!!</button>
+        </div>
+      </div>
+      <div class="author-div">
+        <p>Created by Tulsi Dey</p>
+      </div>
+    </div>
+
+    <!-- <script src="./assets/js/script.js"></script> -->
+    <script>
+      /******* Getting the initial seed value from page load time *******/
+
+      let seed = Math.round(performance.now());
+      const MAX_NUM = Number.MAX_SAFE_INTEGER;
+      const maxLimitForNumberGeneration = 1e10;
+
+      /******* Function for getting execution time of some code snippet *******/
+
+      let doSomething = (limit) => {
+        let num = 0;
+        for (let i = 1; i <= limit; i++) {
+          num += i;
+        }
+      };
+
+      const getSomeCodeExecutionTime = () => {
+        const startTime = Date.now();
+        const timeElapsedSinceUnixEpoch = Date.now();
+        const timeElapsedSincePageLoad = Math.round(performance.now());
+
+        doSomething(
+          (timeElapsedSinceUnixEpoch % 10) *
+            1e5 *
+            (timeElapsedSincePageLoad % 10) *
+            7
+        );
+
+        const endTime = Date.now();
+
+        const result = endTime - startTime;
+        return result;
+      };
+
+      /******* Event Listner for generate button  *******/
+
+      const goButton = document.querySelector(".go-button");
+      const resultBox = document.querySelector(".result");
+
+      goButton.addEventListener("click", (e) => {
+        resultBox.innerText = "?";
+        resultBox.style.backgroundColor = `hsl(0, 0%, 35%)`;
+
+        if (resultBox.classList.contains("rotation")) {
+          resultBox.classList.remove("rotation");
+          resultBox.classList.add("reverse-rotation");
+        } else {
+          resultBox.classList.remove("reverse-rotation");
+          resultBox.classList.add("rotation");
+        }
+
+        goButton.classList.toggle("disable-click");
+        goButton.innerText = "generating...";
+
+        setTimeout(() => {
+          getNumbers();
+          goButton.innerText = "Go!!!";
+          goButton.classList.toggle("disable-click");
+        }, 1000);
+      });
+
+      /******* Event Listner for Input of Upper Limit *******/
+
+      let upperValue = document.querySelector("#upper-limit");
+
+      document.querySelectorAll(".value-change-button").forEach((elem) =>
+        elem.addEventListener("click", (e) => {
+          const type = e.target.getAttribute("data-type");
+
+          if (type === "increment") {
+            upperValue.value++;
+          } else if (type === "decrement") {
+            upperValue.value--;
+          }
+        })
+      );
+
+      /******* Function to check if a string is a valid Number *******/
+
+      let isNumeric = (str) => {
+        if (typeof str != "string") return false;
+        return !isNaN(str) && !isNaN(parseFloat(str));
+      };
+
+      /******* Function to get generate Random Number *******/
+
+      let getNumbers = () => {
+        if (!isNumeric(upperValue.value)) {
+          upperValue.value = 10;
+        }
+
+        upperValue.value = Math.floor(upperValue.value);
+
+        if (upperValue.value < 1) {
+          upperValue.value = 1;
+        } else if (upperValue.value > maxLimitForNumberGeneration) {
+          upperValue.value = maxLimitForNumberGeneration;
+        }
+
+        let timeElapsedSinceUnixEpoch = Date.now();
+
+        let lowerLimit = 1;
+        let upperLimit = document.querySelector("#upper-limit").value;
+
+        let NoOfDigits = Math.ceil(Math.log10(upperLimit) + 0.001);
+
+        // Adjusting the font size according to number of digits
+        if (NoOfDigits >= 10) {
+          resultBox.style.fontSize = "1.5rem";
+        } else if (NoOfDigits >= 8) {
+          resultBox.style.fontSize = "2rem";
+        } else if (NoOfDigits >= 6) {
+          resultBox.style.fontSize = "2.75rem";
+        } else if (NoOfDigits >= 4) {
+          resultBox.style.fontSize = "3.75rem";
+        } else if (NoOfDigits < 4) {
+          resultBox.style.fontSize = "5rem";
+        }
+
+        let SomeCodeExecutionTime = getSomeCodeExecutionTime();
+        // console.log((seed % 1e9), (timeElapsedSinceUnixEpoch % 1e9), SomeCodeExecutionTime);
+
+        const randomNumber =
+          (((seed % 1e9) * (timeElapsedSinceUnixEpoch % 1e9)) % MAX_NUM) +
+          SomeCodeExecutionTime;
+        seed = randomNumber;
+
+        const result = (randomNumber % upperLimit) + lowerLimit;
+        // console.log(randomNumber, result)
+
+        const colorNum = ((randomNumber % 10) + 1) * 36;
+
+        document.querySelector("#result").innerText = result;
+        document.querySelector("#result").style.backgroundColor = `hsl(${
+          colorNum % 360
+        }, 100%, 35%)`;
+      };
+    </script>
+  </body>
+</html>

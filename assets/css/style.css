@@ -1,0 +1,384 @@
+/* Fonts */
+@font-face {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 400; /*100 - 900 */
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/montserrat/v26/JTUSjIg1_i6t8kCHKm459Wlhyw.woff2)
+    format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191,
+    U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Montserrat";
+  font-style: italic;
+  font-weight: 400; /*100 - 900 */
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/montserrat/v26/JTUQjIg1_i6t8kCHKm459WxRyS7m.woff2)
+    format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191,
+    U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/poppins/v20/pxiEyp8kv8JHgFVrJJfecg.woff2)
+    format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191,
+    U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Poppins";
+  font-style: italic;
+  font-weight: 100;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/poppins/v20/pxiAyp8kv8JHgFVrJJLmE0tCMPI.woff2)
+    format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191,
+    U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+h1 {
+  text-align: center;
+  color: hsl(60, 100%, 75%);
+  margin-bottom: 0.5rem;
+}
+
+html {
+  margin: 0.75rem;
+}
+
+body {
+  background-color: #222;
+  max-width: 700px;
+  margin: 0 auto;
+  font-family: "Montserrat", sans-serif;
+}
+
+.main {
+  color: #fff;
+  background-color: hsl(275, 66%, 30%);
+  background-image: linear-gradient(
+    to bottom right,
+    hsl(275, 66%, 30%),
+    hsl(250, 66%, 25%)
+  );
+  padding: 1rem;
+  border: 3px solid hsl(60, 100%, 75%);
+  border-radius: 10px;
+}
+
+p {
+  font-size: large;
+  margin: 5px 0;
+}
+
+.go-button {
+  font-size: x-large;
+  font-weight: 700;
+  color: #000;
+  background-color: hsl(118, 100%, 75%);
+  padding: 1rem 1.5rem;
+  border: 3px solid black;
+  border-radius: 20px;
+  border-radius: 10rem;
+  max-width: fit-content;
+  cursor: pointer;
+  box-shadow: 1px 1px 5px 3px rgba(0, 0, 0, 0.5);
+  user-select: none;
+  min-width: 285px;
+  transition: all 1s linear 1s;
+  margin: 1rem;
+}
+
+.go-button:active {
+  box-shadow: 1px 1px 5px 3px rgba(0, 0, 0, 0.5),
+    inset 1px 1px 3px 1px rgba(0, 0, 0, 0.5);
+}
+
+.disable-click {
+  pointer-events: none !important;
+  background-color: darkorange !important;
+}
+
+.ripple {
+  background-position: center;
+  transition: background 0.8s;
+  background: hsl(120, 90%, 65%)
+    radial-gradient(circle, transparent 1%, hsl(120, 90%, 65%) 1%) center/15000%;
+}
+
+.ripple:active {
+  background-color: hsl(112, 90%, 75%);
+  background-size: 100%;
+  transition: background 0s;
+}
+
+.result-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem 0;
+}
+
+#result {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 5rem;
+  font-weight: bold;
+  border-radius: 20px;
+  width: 12rem;
+  height: 6rem;
+  background-color: hsl(84, 100%, 35%);
+  background-color: hsl(0, 0%, 35%);
+  color: white;
+  border: 0.45rem solid hsl(50, 100%, 65%);
+  margin: 2rem 1rem 2.5rem 1rem;
+  text-shadow: 1px 1.5px 5px black;
+  box-shadow: inset 1px 1px 3px 3px rgba(0, 0, 0, 0.5),
+    3px 3px 7px 7px rgba(0, 0, 0, 0.25);
+}
+
+.rotation {
+  animation: spin 1s linear;
+}
+
+.reverse-rotation {
+  animation: reverse-spin 1s linear;
+}
+
+@-webkit-keyframes spin {
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@-webkit-keyframes reverse-spin {
+  from {
+    -webkit-transform: rotate(360deg);
+  }
+
+  to {
+    -webkit-transform: rotate(0deg);
+  }
+}
+
+@keyframes reverse-spin {
+  from {
+    transform: rotate(360deg);
+  }
+
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+.number-input-container {
+  width: 280px;
+  display: grid;
+  grid-template-columns: 60px auto 60px;
+  margin: 1rem 0;
+  background-color: hsl(50, 100%, 65%);
+  padding: 0.25rem;
+  /* border: 3px solid black; */
+  box-shadow: 1px 1px 5px 3px rgba(0, 0, 0, 0.5);
+  border-radius: 25px;
+}
+
+.number-input {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
+}
+
+input[type="number"] {
+  -webkit-appearance: none;
+  -webkit-border-radius: 0px;
+  -moz-appearance: none;
+  appearance: none;
+
+  width: 100%;
+  min-width: 100%;
+  /* height: 48px; */
+  border-radius: none;
+
+  font-size: 1.25rem;
+  line-height: 24px;
+  text-align: center;
+
+  font-family: sans-serif;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"],
+input[type="number"]:focus {
+  -moz-appearance: textfield;
+  border: 2px solid #000;
+  border-left: none;
+  border-right: none;
+}
+
+input[type="number"]:focus {
+  background-color: #eee;
+  -moz-appearance: textfield;
+  border: 2px solid #000;
+  border-left: none;
+  border-right: none;
+}
+
+button {
+  padding: 0.5rem;
+  background-color: #aaa;
+}
+
+button {
+  margin: 0;
+  color: #000;
+  border: 2px solid #000;
+  cursor: pointer;
+  font-size: 2.5rem;
+  user-select: none;
+}
+
+.button-decrement {
+  color: #000;
+  border-right: none;
+  border-radius: 20px 0 0 20px;
+  padding: 1rem;
+}
+
+.button-increment {
+  color: #000;
+  border-left: none;
+  border-radius: 0 20px 20px 0;
+}
+
+.some-info {
+  font-size: 0.95rem;
+  color: yellow;
+  background-color: hsl(0, 100%, 38%);
+  padding: 0.5rem 1rem;
+  margin-bottom: -1rem;
+  border-radius: 10px 10px 0 0;
+  box-shadow: 1px 1px 5px 3px rgba(0, 0, 0, 0.5);
+  text-align: center;
+}
+
+.card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.author-div {
+  font-family: "Poppins", sans-serif;
+  font-style: italic;
+  font-weight: 100;
+  padding-top: 1rem;
+  margin-bottom: -0.75rem;
+  color: yellow;
+  border-radius: 5px;
+  display: flex;
+  justify-content: right;
+  align-items: center;
+}
+
+.author-div p {
+  font-size: small;
+}
+
+@media (max-width: 350px) {
+  .number-input-container {
+    width: auto;
+  }
+  .some-info {
+    max-width: 120px;
+  }
+  .go-button {
+    min-width: 210px;
+  }
+}
+
+.install-btn-container {
+  display: none;
+}
+
+#install {
+  border: 0.25em solid white;
+  font-size: 1.5rem;
+  border: 0.25rem solid white;
+  box-shadow: 1px 1px 10px 5px hsla(0, 0%, 0%, 0.125);
+  border-radius: 1.5rem;
+  padding: 1.125rem;
+  transition: 0.3s;
+  background-color: hsl(100, 77%, 24%);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: fit-content;
+  text-decoration: none;
+  font-family: Calibri, sans-serif;
+  transition: 0.3s ease-in;
+  cursor: pointer;
+  max-width: 3rem;
+  max-height: 3rem;
+  position: absolute;
+  margin-left: 550px;
+  margin-top: 470px;
+}
+
+#install:active {
+  box-shadow: inset 1px 1px 10px 5px hsla(0, 0%, 0%, 0.25),
+    1px 1px 10px 5px hsla(0, 0%, 0%, 0.125);
+}
+
+#install svg {
+  width: 2em;
+}
+
+#install span {
+  font-size: 1rem;
+  padding-top: 0.125rem;
+}
+
+.btn-div {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  /* background-color: burlywood;
+  padding: 1rem; */
+}
